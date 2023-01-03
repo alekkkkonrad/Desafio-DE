@@ -1,0 +1,44 @@
+1)
+    a)
+        INSERT INTO Aluno
+        VALUES(1, 'Lucas');
+
+        INSERT INTO Responsável
+        VALUES(1, 'Pablo');
+
+        INSERT INTO Parentesco
+        VALUES(1, 1, 'Pai');
+
+    b)
+        INSERT INTO Responsável
+        VALUES(2, 'Brenda');
+
+        INSERT INTO Parentesco
+        VALUES(2, 1, 'Mãe');
+
+2)
+    SELECT DISTINCT a.Nome as Aluno, (
+    SELECT r.Nome FROM Parentesco p
+    INNER JOIN Responsavel r ON 
+    r.Id = p.IdResponsavel 
+    WHERE p.IdAluno = a.Id 
+    LIMIT 1
+    ) as Responsavel,
+    (
+    SELECT p.Parentesco FROM Parentesco p WHERE p.IdAluno = a.Id LIMIT 1
+    ) as Parentesco,
+    (
+    SELECT r.Nome FROM Parentesco p 
+    INNER JOIN Responsavel r ON r.Id = p.IdResponsavel WHERE p.IdAluno = a.Id LIMIT 1, 1
+    ) as Responsavel,
+    (
+    SELECT p.Parentesco FROM Parentesco p WHERE p.IdAluno = a.Id LIMIT 1, 1
+    ) as Parentesco
+    FROM Aluno a;
+
+3)
+    SELECT a.*, r.* FROM Parentesco p
+    JOIN Responsavel r ON 
+    p.IdResponsavel = r.Id
+    JOIN Aluno a ON 
+    p.IdAluno = a.Id;

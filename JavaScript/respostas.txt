@@ -1,0 +1,50 @@
+1)
+    var clientes = [
+        {id: 1, nome: 'Luis Santos Oliveira', idade: 18},
+        {id: 2, nome: 'Ricardo Lopes Alves', idade: 30},
+        {id: 3, nome: 'Gustavo Silva Junior', idade: 26}
+    ]
+
+    clientes.map((cliente) => {
+        let arr_nomes = cliente.nome.split(' ')
+        return console.log(`${arr_nomes[arr_nomes.length-1]}, ${arr_nomes[0]}`)
+    })
+
+2)
+    var numero = "5(1)9-876-543-21"
+
+    function formataNumero(numero) {
+
+        let numeroFormatado = ['(']
+        let contNumeros = 0
+        numero.split("").map((num) => {
+            if(!isNaN(parseFloat(num)) && isFinite(num)){
+                if(contNumeros === 2){
+                    numeroFormatado.push(')')
+                    numeroFormatado.push('_')
+                }
+                if(contNumeros === 3){
+                    numeroFormatado.push('_')
+                }
+                if(contNumeros === 7){
+                    numeroFormatado.push('-')
+                }
+                numeroFormatado.push(num)
+                contNumeros++
+            }
+        })
+        return numeroFormatado.join('')
+    }
+    numero = formataNumero(numero)
+    console.log(numero)
+
+3)
+    log 1 - A  função é: c
+    log 2 - A função é: d
+
+4)
+    Erro/warning 1: A função b() na forma como está desenvolvida é completamente dispensável.
+    o return na primeira linha da função faz com que nada nela seja executado.
+
+    Erro/warning 2: O await espera a solução de uma promise, quando observamos a função d() vemos que não temos o resolve() da promise sendo assim não há
+    o retorno para a função assincrona a() e a execução do código termina mostrando o log 2 apresentado na resposta anterior.
